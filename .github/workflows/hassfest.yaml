@@ -11,5 +11,6 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - uses: "actions/checkout@v2"
-        path: snoo
+        with:
+          path: snoo
       - uses: home-assistant/actions/hassfest@master
