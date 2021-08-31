@@ -10,19 +10,6 @@ from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
-LEVEL_NAME = {
-    SessionLevel.ONLINE: "Online",
-    SessionLevel.BASELINE: "Baseline",
-    SessionLevel.WEANING_BASELINE: "Weaning Baseline",
-    SessionLevel.LEVEL1: "One",
-    SessionLevel.LEVEL2: "Two",
-    SessionLevel.LEVEL3: "Three",
-    SessionLevel.LEVEL4: "Four",
-    SessionLevel.NONE: None,
-    SessionLevel.PRETIMEOUT: "Pre-Timeout",
-    SessionLevel.TIMEOUT: "Timeout",
-}
-
 LEVEL_NUMBER = {
     SessionLevel.ONLINE: None,
     SessionLevel.BASELINE: 0.1,
@@ -131,6 +118,8 @@ class SnooSensor(SensorEntity):
 class SnooMainSensor(SnooSensor):
     """Sensor for the Snoo's main state."""
 
+    _attr_device_class = "snoo__level"
+
     @property
     def unique_id(self):
         """Return the unique id of the sensor."""
@@ -146,7 +135,7 @@ class SnooMainSensor(SnooSensor):
         """Return the state of the sensor."""
         if self._as is None:
             return None
-        return LEVEL_NAME.get(self._as.state_machine.state, None)
+        return self._as.state_machine.state.value
 
     @property
     def extra_state_attributes(self):
@@ -154,7 +143,6 @@ class SnooMainSensor(SnooSensor):
         if self._as is None:
             return {}
         return {
-            "raw_state": self._as.state_machine.state.value,
             "left_safety_clip": self._as.left_safety_clip,
             "right_safety_clip": self._as.right_safety_clip,
             "system_state": self._as.system_state,

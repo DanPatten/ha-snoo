@@ -1,0 +1,16 @@
+{
+  "state": {
+    "snoo__level": {
+      "ONLINE": "Online",
+      "BASELINE": "Baseline",
+      "WEANING_BASELINE": "Weaning Baseline",
+      "LEVEL1": "One",
+      "LEVEL2": "Two",
+      "LEVEL3": "Three",
+      "LEVEL4": "Four",
+      "NONE": "None",
+      "PRETIMEOUT": "Pre-Timeout",
+      "TIMEOUT": "Timeout"
+    }
+  }
+}
