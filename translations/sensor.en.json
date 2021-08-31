@@ -1,6 +1,6 @@
 {
   "state": {
-    "snoo__level": {
+    "__level": {
       "ONLINE": "Online",
       "BASELINE": "Baseline",
       "WEANING_BASELINE": "Weaning Baseline",
