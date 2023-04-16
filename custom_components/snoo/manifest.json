@@ -4,7 +4,7 @@
   "config_flow": true,
   "documentation": "https://www.home-assistant.io/integrations/snoo",
   "issue_tracker": "https://github.com/sgtbatten/ha-snoo/issues",
-  "requirements": ["git+https://github.com/sgtbatten/pysnoo.git@develop"],
+  "requirements": ["git+https://github.com/sgtbatten/pysnoo.git@develop#pysnoo"],
   "ssdp": [],
   "zeroconf": [],
   "homekit": {},
