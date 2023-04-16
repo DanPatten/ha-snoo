@@ -3,7 +3,7 @@
   "name": "Snoo",
   "config_flow": true,
   "documentation": "https://www.home-assistant.io/integrations/snoo",
-  "requirements": ["git+https://github.com/sgtbatten/pysnoo.git@develop#pysnoo==0.1.3],
+  "requirements": ["git+https://github.com/sgtbatten/pysnoo.git@develop#pysnoo==0.1.3"],
   "ssdp": [],
   "zeroconf": [],
   "homekit": {},
