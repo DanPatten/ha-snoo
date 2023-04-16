@@ -1,18 +1,18 @@
 {
   "domain": "snoo",
   "name": "Snoo",
-  "config_flow": true,
-  "documentation": "https://www.home-assistant.io/integrations/snoo",
-  "issue_tracker": "https://github.com/sgtbatten/ha-snoo/issues",
-  "requirements": ["git+https://github.com/sgtbatten/pysnoo.git@develop#pysnoo"],
-  "ssdp": [],
-  "zeroconf": [],
-  "homekit": {},
-  "dependencies": [],
   "codeowners": [
     "@joncar",
     "@sgtbatten"
   ],
+  "config_flow": true,
+  "dependencies": [],
+  "homekit": {},
   "iot_class": "cloud_push",
-  "version": "0.0.1"
+  "documentation": "https://www.home-assistant.io/integrations/snoo",
+  "issue_tracker": "https://github.com/sgtbatten/ha-snoo/issues",
+  "requirements": ["git+https://github.com/sgtbatten/pysnoo.git@develop#pysnoo"],
+  "ssdp": [],
+  "version": "0.0.1",
+  "zeroconf": []
 }
