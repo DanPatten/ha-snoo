@@ -3,7 +3,7 @@ import logging
 
 from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorEntity
 from homeassistant.const import DEVICE_CLASS_TIMESTAMP
-from pysnoo import ActivityState, SessionLevel
+from pysnoo2 import ActivityState, SessionLevel
 
 from . import SnooHub
 from .const import DOMAIN
@@ -12,8 +12,8 @@ _LOGGER = logging.getLogger(__name__)
 
 LEVEL_NUMBER = {
     SessionLevel.ONLINE: None,
-    SessionLevel.BASELINE: 0.1,
-    SessionLevel.WEANING_BASELINE: 0,
+    SessionLevel.BASELINE: 0,
+    SessionLevel.WEANING_BASELINE: -1,
     SessionLevel.LEVEL1: 1,
     SessionLevel.LEVEL2: 2,
     SessionLevel.LEVEL3: 3,

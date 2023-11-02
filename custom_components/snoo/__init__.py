@@ -5,7 +5,7 @@ import logging
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
-import pysnoo
+import pysnoo2
 
 from .const import DOMAIN
 
@@ -29,10 +29,10 @@ class SnooHub:
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up Snoo from a config entry."""
-    auth = pysnoo.SnooAuthSession()
-    await auth.fetch_token(entry.data["username"], entry.data["password"])
+    auth = pysnoo2.SnooAuthSession(entry.data["username"], entry.data["password"])
+    await auth.fetch_token()
 
-    snoo = pysnoo.Snoo(auth)
+    snoo = pysnoo2.Snoo(auth)
 
     devices = await snoo.get_devices()
 
@@ -45,8 +45,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     # ... because who would have multiple devices and only one baby.
     baby = await snoo.get_baby()
 
-    pubnub = pysnoo.SnooPubNub(
-        auth,
+    pubnubToken = await snoo.pubnub_auth()
+    pubnub = pysnoo2.SnooPubNub(
+        pubnubToken,
+        snoo.pubnub_auth,
         device.serial_number,
         f"pn-homeassistant-{device.serial_number}",
     )
@@ -56,7 +58,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hub = SnooHub(auth, snoo, device, baby, pubnub)
     hass.data.setdefault(DOMAIN, {})[entry.entry_id] = hub
 
-    hass.config_entries.async_setup_platforms(entry, PLATFORMS)
+    await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
 
     return True
 

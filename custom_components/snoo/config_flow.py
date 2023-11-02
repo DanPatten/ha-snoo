@@ -4,7 +4,7 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-import pysnoo
+import pysnoo2
 import voluptuous as vol
 
 from homeassistant import config_entries
@@ -30,9 +30,9 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
     Data has the keys from STEP_USER_DATA_SCHEMA with values provided by the user.
     """
 
-    auth = pysnoo.SnooAuthSession()
+    auth = pysnoo2.SnooAuthSession(data["username"], data["password"])
 
-    token = await auth.fetch_token(data["username"], data["password"])
+    token = await auth.fetch_token()
     if not token:
         raise InvalidAuth
 
